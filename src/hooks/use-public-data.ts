@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { publicApiService } from "@/lib/public-api";
+import { publicApiService } from "../lib/public-api";
 import type {
   ScheduleEvent,
   Speaker,
   ExhibitorType,
   LocationType,
-} from "@/types";
+} from "../types";
 
 export function usePublicData() {
   const [loading, setLoading] = useState(true);

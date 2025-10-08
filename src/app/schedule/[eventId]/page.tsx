@@ -3,8 +3,8 @@
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/hooks/use-auth";
-import type { ScheduleEvent, Speaker, EventFile } from "@/types";
+import { useAuth } from "../../../hooks/use-auth";
+import type { ScheduleEvent, Speaker, EventFile } from "../../../types";
 import {
   Card,
   CardContent,
@@ -12,8 +12,8 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "../../../components/ui/card";
+import { Button } from "../../../components/ui/button";
 import {
   ArrowLeft,
   CalendarDays,

@@ -1,12 +1,12 @@
 
 "use client";
 
-import { useAuth } from '@/hooks/use-auth';
-import { Poll, PollOption, UserVote } from '@/types';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+import { useAuth } from '../../hooks/use-auth';
+import { Poll, PollOption, UserVote } from '../../types';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
+import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group';
+import { Label } from '../../components/ui/label';
 import { useState, useEffect, useMemo } from 'react';
 import { BarChart3, Check, X } from 'lucide-react';
 

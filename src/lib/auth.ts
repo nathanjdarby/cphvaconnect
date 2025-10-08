@@ -1,5 +1,5 @@
 import { userService } from "./database";
-import { User } from "@/types";
+import { User } from "../types";
 
 // Simple in-memory session storage (in production, use proper session management)
 const sessions = new Map<string, { userId: string; expiresAt: number }>();

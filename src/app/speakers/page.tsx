@@ -1,8 +1,8 @@
 "use client";
 
-import SpeakerCard from "@/components/conference/speaker-card";
-import { useAuth } from "@/hooks/use-auth";
-import { Card, CardContent } from "@/components/ui/card";
+import SpeakerCard from "../../components/conference/speaker-card";
+import { useAuth } from "../../hooks/use-auth";
+import { Card, CardContent } from "../../components/ui/card";
 
 export default function SpeakersPage() {
   const { allSpeakers, loading } = useAuth();

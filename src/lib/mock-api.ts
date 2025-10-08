@@ -12,7 +12,7 @@ import {
   PollOption,
   UserVote,
   AppSettings,
-} from "@/types";
+} from "../types";
 import {
   initialMockUsers,
   initialMockTickets,

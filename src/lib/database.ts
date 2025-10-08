@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
-import { User, Ticket, ScheduleEvent, Speaker, ExhibitorType, TicketType, LocationType, Poll, PollOption, UserVote, AppSettings, EventFile } from '@/types';
+import { User, Ticket, ScheduleEvent, Speaker, ExhibitorType, TicketType, LocationType, Poll, PollOption, UserVote, AppSettings, EventFile } from '../types';
 
 // Database singleton
 let db: Database.Database | null = null;

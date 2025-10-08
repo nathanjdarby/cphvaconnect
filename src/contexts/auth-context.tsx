@@ -12,7 +12,7 @@ import type {
   EventFile,
   UserVote,
   AppSettings,
-} from "@/types";
+} from "../types";
 import React, {
   createContext,
   useState,
@@ -20,8 +20,8 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { mockApiService } from "@/lib/mock-api";
+import { useToast } from "../hooks/use-toast";
+import { mockApiService } from "../lib/mock-api";
 
 const mapUserWithDefaults = (
   userData: Partial<User> & { id: string }

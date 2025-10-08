@@ -1,6 +1,6 @@
 
-import type { Ticket } from '@/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import type { Ticket } from '../../types';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import QrCodeDisplay from './qr-code-display';
 import { Ticket as TicketIcon, Calendar, UserCircle, BadgeDollarSign } from 'lucide-react';
 

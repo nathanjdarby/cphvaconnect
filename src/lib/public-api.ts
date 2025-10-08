@@ -1,6 +1,6 @@
 // Public API service for non-authenticated users
 // This provides access to public conference data without requiring login
-import { ScheduleEvent, Speaker, ExhibitorType, LocationType } from "@/types";
+import { ScheduleEvent, Speaker, ExhibitorType, LocationType } from "../types";
 import { mockApiService } from "./mock-api";
 
 class PublicApiService {

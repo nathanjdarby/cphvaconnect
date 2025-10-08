@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from "@/components/ui/card";
+} from "../../components/ui/card";
 import {
   CalendarDays,
   Clock,
@@ -20,8 +20,8 @@ import {
   Coffee,
   Utensils,
 } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
-import type { ScheduleEvent, Speaker, LocationType } from "@/types";
+import { useAuth } from "../../hooks/use-auth";
+import type { ScheduleEvent, Speaker, LocationType } from "../../types";
 import { format, parseISO, isSameDay, isToday, isTomorrow } from "date-fns";
 
 // Helper function to check if an event is currently active

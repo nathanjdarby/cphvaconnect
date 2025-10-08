@@ -11,7 +11,7 @@ import {
   PollOption,
   UserVote,
   AppSettings,
-} from "@/types";
+} from "../types";
 
 const API_BASE = "/api";
 

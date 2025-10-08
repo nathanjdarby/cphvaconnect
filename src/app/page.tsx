@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "../components/ui/card";
 import {
   ArrowRight,
   CalendarDays,
@@ -21,8 +21,8 @@ import {
   UserCircle,
   PlayCircle,
 } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
-import type { ScheduleEvent, Speaker as SpeakerType } from "@/types";
+import { useAuth } from "../hooks/use-auth";
+import type { ScheduleEvent, Speaker as SpeakerType } from "../types";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect, useMemo, useCallback } from "react";
 

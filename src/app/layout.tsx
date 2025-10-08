@@ -3,12 +3,12 @@
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from "@/contexts/auth-context";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+import { Toaster } from "../components/ui/toaster";
+import { AuthProvider } from "../contexts/auth-context";
+import Header from "../components/layout/header";
+import Footer from "../components/layout/footer";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "../hooks/use-auth";
 import { useEffect } from "react";
 
 const geistSans = GeistSans;
