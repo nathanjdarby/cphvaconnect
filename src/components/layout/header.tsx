@@ -2,9 +2,9 @@
 "use client";
 
 import Link from 'next/link';
-import { useAuth } from '@/hooks/use-auth';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { useAuth } from '../../hooks/use-auth';
+import { Button } from '../../components/ui/button';
+import { Badge } from '../../components/ui/badge';
 import {
   Home, CalendarDays, Ticket, LogIn, LogOut, UserCircle, UserPlus,
   Building2, Mic, Menu, Edit3, HeartPulse,
@@ -19,10 +19,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuGroup,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from "../../components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
 import { useRouter } from 'next/navigation';
-import type { User } from '@/types';
+import type { User } from '../../types';
 import ActivePollDisplay from '../conference/active-poll-display';
 
 // Simplified CPHVA Logo SVG

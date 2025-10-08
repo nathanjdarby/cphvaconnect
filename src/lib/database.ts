@@ -20,6 +20,7 @@ let db: Database.Database | null = null;
 
 export function getDatabase(): Database.Database {
   if (!db) {
+    // Use environment variable if set, otherwise use default path
     const dbPath =
       process.env.DATABASE_PATH ||
       path.join(process.cwd(), "database", "cphva_connect.db");

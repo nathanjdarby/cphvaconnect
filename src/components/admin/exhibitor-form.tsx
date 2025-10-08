@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -15,11 +15,11 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from "@/components/ui/form";
-import { useAuth } from "@/hooks/use-auth";
-import type { ExhibitorType } from "@/types";
+} from "../../components/ui/form";
+import { useAuth } from "../../hooks/use-auth";
+import type { ExhibitorType } from "../../types";
 import { UploadCloud, Info } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "../../hooks/use-toast";
 import NextImage from "next/image";
 
 const MAX_LOGO_SIZE_MB = 2;

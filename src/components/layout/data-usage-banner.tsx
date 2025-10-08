@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/button';
 import { Info, X } from 'lucide-react';
 
 const LOCAL_STORAGE_BANNER_DISMISSED_KEY = 'cphva-dataUsageBannerDismissed';

@@ -3,12 +3,12 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/use-auth';
-import type { User, Ticket } from '@/types';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { useAuth } from '../../../hooks/use-auth';
+import type { User, Ticket } from '../../../types';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../../../components/ui/card';
+import { Button } from '../../../components/ui/button';
 import { ArrowLeft, UserCircle, Mail, Ticket as TicketIcon, ShieldAlert, Edit3, Eye, EyeOff, BookUser } from 'lucide-react';
-import TicketCard from '@/components/ticket/ticket-card';
+import TicketCard from '../../../components/ticket/ticket-card';
 import { useEffect, useState } from 'react';
 
 export default function UserProfilePage() {

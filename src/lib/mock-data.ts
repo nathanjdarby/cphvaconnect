@@ -11,7 +11,7 @@ import type {
   PollOption,
   UserVote,
   AppSettings,
-} from "@/types";
+} from "../types";
 
 // Helper function to create ISO date strings for November 2025
 const getISODateTime2025 = (day: 5 | 6, timeString: string): string => {

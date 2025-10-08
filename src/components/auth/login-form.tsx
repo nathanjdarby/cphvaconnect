@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useAuth } from "@/hooks/use-auth";
+} from "../../components/ui/form";
+import { Input } from "../../components/ui/input";
+import { useAuth } from "../../hooks/use-auth";
 import { LogIn } from "lucide-react";
 import { useRouter } from 'next/navigation';
 

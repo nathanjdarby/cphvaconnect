@@ -1,7 +1,7 @@
 
 import Image from 'next/image';
-import type { Speaker } from '@/types';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import type { Speaker } from '../../types';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';

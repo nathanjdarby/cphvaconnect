@@ -4,16 +4,21 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/hooks/use-auth";
-import type { ScheduleEvent, Speaker, LocationType, User } from "@/types";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "../../../hooks/use-auth";
+import type {
+  ScheduleEvent,
+  Speaker,
+  LocationType,
+  User,
+} from "../../../types";
+import { Button } from "../../../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
   CardDescription,
-} from "@/components/ui/card";
+} from "../../../components/ui/card";
 import {
   Table,
   TableBody,
@@ -22,14 +27,14 @@ import {
   TableHeader,
   TableRow,
   TableCaption,
-} from "@/components/ui/table";
+} from "../../../components/ui/table";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from "@/components/ui/sheet";
+} from "../../../components/ui/sheet";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -39,8 +44,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { ScheduleForm } from "@/components/admin/schedule-form";
+} from "../../../components/ui/alert-dialog";
+import { ScheduleForm } from "../../../components/admin/schedule-form";
 import {
   PlusCircle,
   Edit,

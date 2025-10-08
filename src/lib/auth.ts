@@ -8,6 +8,7 @@ const sessions = new Map<string, { userId: string; expiresAt: number }>();
 // Session timeout (24 hours)
 const SESSION_TIMEOUT = 24 * 60 * 60 * 1000;
 
+// Hash password using SHA256 (matching the database init script)
 function hashPassword(password: string): string {
   return crypto.createHash("sha256").update(password).digest("hex");
 }
@@ -28,7 +29,6 @@ export const authService = {
       }
 
       const hashedPassword = hashPassword(password);
-
       const dbUser = await userService.getUserByEmail(email);
       if (!dbUser || !dbUser.password) {
         console.log("No password found for user:", email);
@@ -51,6 +51,7 @@ export const authService = {
         expiresAt: Date.now() + SESSION_TIMEOUT,
       });
 
+      console.log("Login successful for user:", email);
       return { user, token };
     } catch (error) {
       console.error("Login error:", error);

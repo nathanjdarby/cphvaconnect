@@ -4,9 +4,9 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/hooks/use-auth";
-import type { Speaker, User } from "@/types";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "../../../hooks/use-auth";
+import type { Speaker, User } from "../../../types";
+import { Button } from "../../../components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,18 +14,18 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+} from "../../../components/ui/card";
+import { Checkbox } from "../../../components/ui/checkbox";
+import { Input } from "../../../components/ui/input";
+import { Label } from "../../../components/ui/label";
+import { Textarea } from "../../../components/ui/textarea";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from "@/components/ui/sheet";
+} from "../../../components/ui/sheet";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,8 +35,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { SpeakerForm } from "@/components/admin/speaker-form";
+} from "../../../components/ui/alert-dialog";
+import { SpeakerForm } from "../../../components/admin/speaker-form";
 import {
   PlusCircle,
   Edit,

@@ -1,7 +1,7 @@
 "use client";
 
-import { useAuth } from "@/hooks/use-auth";
-import type { ExhibitorType } from "@/types";
+import { useAuth } from "../../hooks/use-auth";
+import type { ExhibitorType } from "../../types";
 import {
   Card,
   CardContent,
@@ -9,8 +9,8 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 import Image from "next/image";
 import { ExternalLink, Building2, MapPin } from "lucide-react";
 

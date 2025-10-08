@@ -3,10 +3,10 @@
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/hooks/use-auth";
-import type { Speaker, ScheduleEvent, LocationType } from "@/types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "../../../hooks/use-auth";
+import type { Speaker, ScheduleEvent, LocationType } from "../../../types";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
+import { Button } from "../../../components/ui/button";
 import { ArrowLeft, CalendarDays, Clock, MapPin, Mic } from "lucide-react";
 import { format, parseISO } from "date-fns";
 
