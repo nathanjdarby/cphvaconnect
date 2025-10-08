@@ -23,6 +23,7 @@ import React, {
 import { useToast } from "../hooks/use-toast";
 import { mockApiService } from "../lib/mock-api";
 import { authClientService } from "../lib/auth-client";
+import { adminClientService } from "../lib/admin-client";
 
 // Check if we should use real database
 const USE_REAL_DB =
@@ -326,16 +327,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const loadAdminData = async () => {
     try {
-      // Load admin-specific data (users, tickets, ticket types)
-      const [users, tickets, ticketTypes] = await Promise.all([
-        mockApiService.getAllUsers(),
-        mockApiService.getAllTickets(),
-        mockApiService.getAllTicketTypes(),
-      ]);
+      if (USE_REAL_DB) {
+        // Load admin-specific data from real database
+        const [users, tickets, ticketTypes] = await Promise.all([
+          adminClientService.getAllUsers(),
+          mockApiService.getAllTickets(), // TODO: Create real database API for tickets
+          mockApiService.getAllTicketTypes(), // TODO: Create real database API for ticket types
+        ]);
 
-      setAllUsers(users);
-      setAllTickets(tickets);
-      setAllTicketTypes(ticketTypes);
+        setAllUsers(users);
+        setAllTickets(tickets);
+        setAllTicketTypes(ticketTypes);
+      } else {
+        // Load admin-specific data from mock service
+        const [users, tickets, ticketTypes] = await Promise.all([
+          mockApiService.getAllUsers(),
+          mockApiService.getAllTickets(),
+          mockApiService.getAllTicketTypes(),
+        ]);
+
+        setAllUsers(users);
+        setAllTickets(tickets);
+        setAllTicketTypes(ticketTypes);
+      }
     } catch (error) {
       console.error("Error loading admin data:", error);
     }
@@ -1067,15 +1081,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     newRole: User["role"]
   ): Promise<boolean> => {
     try {
-      await mockApiService.updateUser(userId, { role: newRole });
-      await refreshData();
+      if (USE_REAL_DB) {
+        const success = await adminClientService.updateUser(userId, { role: newRole });
+        if (success) {
+          await refreshData();
+          toast({
+            title: "Role updated",
+            description: "User role has been updated successfully.",
+          });
+          return true;
+        } else {
+          toast({
+            title: "Role update failed",
+            description: "Failed to update user role.",
+            variant: "destructive",
+          });
+          return false;
+        }
+      } else {
+        await mockApiService.updateUser(userId, { role: newRole });
+        await refreshData();
 
-      toast({
-        title: "Role updated",
-        description: "User role has been updated successfully.",
-      });
+        toast({
+          title: "Role updated",
+          description: "User role has been updated successfully.",
+        });
 
-      return true;
+        return true;
+      }
     } catch (error) {
       console.error("Update role error:", error);
       toast({
@@ -1089,15 +1122,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const deleteUser = async (userId: string): Promise<boolean> => {
     try {
-      await mockApiService.deleteUser(userId);
-      await refreshData();
+      if (USE_REAL_DB) {
+        const success = await adminClientService.deleteUser(userId);
+        if (success) {
+          await refreshData();
+          toast({
+            title: "User deleted",
+            description: "User has been deleted successfully.",
+          });
+          return true;
+        } else {
+          toast({
+            title: "User deletion failed",
+            description: "Failed to delete user.",
+            variant: "destructive",
+          });
+          return false;
+        }
+      } else {
+        await mockApiService.deleteUser(userId);
+        await refreshData();
 
-      toast({
-        title: "User deleted",
-        description: "User has been deleted successfully.",
-      });
+        toast({
+          title: "User deleted",
+          description: "User has been deleted successfully.",
+        });
 
-      return true;
+        return true;
+      }
     } catch (error) {
       console.error("Delete user error:", error);
       toast({
@@ -1183,16 +1235,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         avatarStoragePath: null,
       };
 
-      const newUser = await mockApiService.register(userData);
-      if (newUser) {
-        await refreshData();
-        toast({
-          title: "User created",
-          description: "User has been created successfully.",
-        });
-        return newUser.user;
+      if (USE_REAL_DB) {
+        const newUser = await adminClientService.createUser(userData);
+        if (newUser) {
+          await refreshData();
+          toast({
+            title: "User created",
+            description: "User has been created successfully.",
+          });
+          return newUser;
+        }
+        return null;
+      } else {
+        const newUser = await mockApiService.register(userData);
+        if (newUser) {
+          await refreshData();
+          toast({
+            title: "User created",
+            description: "User has been created successfully.",
+          });
+          return newUser.user;
+        }
+        return null;
       }
-      return null;
     } catch (error) {
       console.error("Admin create user error:", error);
       toast({
