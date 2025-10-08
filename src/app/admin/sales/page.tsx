@@ -3,12 +3,12 @@
 
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
-import type { Ticket, User } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '@/components/ui/table';
-import { Input } from '@/components/ui/input';
+import { useAuth } from '../../../hooks/use-auth';
+import type { Ticket, User } from '../../../types';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../../../components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '../../../components/ui/table';
+import { Input } from '../../../components/ui/input';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,13 +18,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import QrCodeDisplay from '@/components/ticket/qr-code-display';
+} from '../../../components/ui/alert-dialog';
+import QrCodeDisplay from '../../../components/ticket/qr-code-display';
 import { ShieldAlert, DollarSign, Search, QrCode as QrCodeIcon, TicketCheck, XCircle, Trash2, Download, PlusCircle } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
-import { useToast } from '@/hooks/use-toast';
-import { AdminCreateTicketForm } from '@/components/admin/admin-create-ticket-form';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { useToast } from '../../../hooks/use-toast';
+import { AdminCreateTicketForm } from '../../../components/admin/admin-create-ticket-form';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '../../../components/ui/sheet';
 
 
 export default function AdminSalesPage() {

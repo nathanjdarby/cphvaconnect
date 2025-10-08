@@ -4,25 +4,25 @@
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/use-auth';
-import type { User } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '@/components/ui/table';
+import { useAuth } from '../../../hooks/use-auth';
+import type { User } from '../../../types';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../../components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '../../../components/ui/table';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../../../components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from '@/components/ui/sheet';
+} from '../../../components/ui/sheet';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -32,10 +32,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { UserForm } from '@/components/admin/user-form';
+} from '../../../components/ui/alert-dialog';
+import { UserForm } from '../../../components/admin/user-form';
 import { PlusCircle, Trash2, ShieldAlert, UsersRound, Filter } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '../../../hooks/use-toast';
 
 type UserRole = User['role'];
 

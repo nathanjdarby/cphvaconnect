@@ -1,14 +1,14 @@
 
 "use client";
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '../../../hooks/use-auth';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../../components/ui/card';
+import { Label } from '../../../components/ui/label';
+import { Switch } from '../../../components/ui/switch';
 import { ShieldAlert, Settings as SettingsIcon } from 'lucide-react';
-import type { User } from '@/types';
+import type { User } from '../../../types';
 
 export default function AdminSettingsPage() {
   const { user, loading, appSettings, updateAppSettings } = useAuth();
