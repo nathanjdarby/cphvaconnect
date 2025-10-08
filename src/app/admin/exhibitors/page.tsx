@@ -5,17 +5,17 @@ import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'; 
 import Image from 'next/image';
-import { useAuth } from '@/hooks/use-auth';
-import type { ExhibitorType, User } from '@/types'; // Added User
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { useAuth } from '../../../hooks/use-auth';
+import type { ExhibitorType, User } from '../../../types'; // Added User
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../../../components/ui/card';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from '@/components/ui/sheet';
+} from '../../../components/ui/sheet';
 import {
   AlertDialog,
   AlertDialogAction,

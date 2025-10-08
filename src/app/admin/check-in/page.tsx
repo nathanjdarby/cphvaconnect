@@ -14,7 +14,11 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "../../../components/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/ui/alert";
 import {
   QrCode,
   ShieldAlert,
@@ -25,7 +29,7 @@ import {
   Search,
 } from "lucide-react";
 import { Html5Qrcode, Html5QrcodeScannerState } from "html5-qrcode";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "../../../hooks/use-toast";
 
 const QR_SCANNER_ELEMENT_ID = "qr-reader";
 
