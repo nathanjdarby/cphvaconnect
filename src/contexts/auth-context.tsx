@@ -12,7 +12,7 @@ import type {
   EventFile,
   UserVote,
   AppSettings,
-} from "@/types";
+} from "../types";
 import React, {
   createContext,
   useState,
@@ -20,13 +20,24 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { mockApiService } from "@/lib/mock-api";
+import { useToast } from "../hooks/use-toast";
+import { mockApiService } from "../lib/mock-api";
+import { authClientService } from "../lib/auth-client";
+
+// Check if we should use real database
+const USE_REAL_DB =
+  process.env.NEXT_PUBLIC_USE_REAL_DATABASE === "true" ||
+  (typeof window === "undefined" && process.env.USE_REAL_DATABASE === "true");
 
 const mapUserWithDefaults = (
   userData: Partial<User> & { id: string }
 ): User => {
-  const validRoles: User["role"][] = ["admin", "attendee", "organiser"];
+  const validRoles: User["role"][] = [
+    "admin",
+    "attendee",
+    "organiser",
+    "staff",
+  ];
   let role: User["role"] = "attendee";
 
   if (userData.role && validRoles.includes(userData.role)) {
@@ -226,10 +237,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         // Check if we're in the browser
         if (typeof window !== "undefined") {
           const token = localStorage.getItem("authToken");
-          if (token && mockApiService.isValidToken(token)) {
-            const currentUser = await mockApiService.getCurrentUser(token);
-            if (currentUser) {
-              setUser(mapUserWithDefaults(currentUser));
+          if (token) {
+            const isValidToken = USE_REAL_DB
+              ? authClientService.isValidToken(token)
+              : mockApiService.isValidToken(token);
+
+            if (isValidToken) {
+              const currentUser = USE_REAL_DB
+                ? await authClientService.getCurrentUser(token)
+                : await mockApiService.getCurrentUser(token);
+              if (currentUser) {
+                setUser(mapUserWithDefaults(currentUser));
+              }
             }
           }
         }
@@ -340,7 +359,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ): Promise<boolean> => {
     try {
       setLoading(true);
-      const result = await mockApiService.login(email, password);
+      console.log("Attempting login with:", email, "USE_REAL_DB:", USE_REAL_DB);
+
+      const result = USE_REAL_DB
+        ? await authClientService.login(email, password)
+        : await mockApiService.login(email, password);
 
       if (result) {
         const mappedUser = mapUserWithDefaults(result.user);
@@ -376,7 +399,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const token = localStorage.getItem("authToken");
       if (token) {
-        await mockApiService.logout(token);
+        if (USE_REAL_DB) {
+          await authClientService.logout(token);
+        } else {
+          await mockApiService.logout(token);
+        }
         localStorage.removeItem("authToken");
       }
       setUser(null);

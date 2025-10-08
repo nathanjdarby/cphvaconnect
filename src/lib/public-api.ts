@@ -6,7 +6,7 @@ import { mockApiService } from "./mock-api";
 class PublicApiService {
   // Get all public schedule events
   async getPublicScheduleEvents(): Promise<ScheduleEvent[]> {
-    return await mockApiService.getAllScheduleEvents();
+    return await mockApiService.getAllEvents();
   }
 
   // Get all public speakers
@@ -31,7 +31,7 @@ class PublicApiService {
 
   // Get a specific schedule event by ID
   async getPublicScheduleEventById(id: string): Promise<ScheduleEvent | null> {
-    return await mockApiService.getScheduleEventById(id);
+    return await mockApiService.getEventById(id);
   }
 
   // Get a specific exhibitor by ID

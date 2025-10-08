@@ -1,5 +1,6 @@
 import { userService } from "./database";
-import { User } from "@/types";
+import { User } from "../types";
+import crypto from "crypto";
 
 // Simple in-memory session storage (in production, use proper session management)
 const sessions = new Map<string, { userId: string; expiresAt: number }>();
@@ -7,25 +8,35 @@ const sessions = new Map<string, { userId: string; expiresAt: number }>();
 // Session timeout (24 hours)
 const SESSION_TIMEOUT = 24 * 60 * 60 * 1000;
 
+function hashPassword(password: string): string {
+  return crypto.createHash("sha256").update(password).digest("hex");
+}
+
 export const authService = {
-  // Simple login with email/password (in production, use proper password hashing)
+  // Login with email/password using proper password hashing
   async login(
     email: string,
     password: string
   ): Promise<{ user: User; token: string } | null> {
     try {
-      // For demo purposes, we'll use a simple password check
-      // In production, you should use proper password hashing
-      const users = await userService.getAllUsers();
+      const users = await userService.getAllUsers(); // This is still used for finding, but getUserByEmail is for password
       const user = users.find((u) => u.email === email);
 
       if (!user) {
+        console.log("User not found:", email);
         return null;
       }
 
-      // Simple password check (in production, use bcrypt or similar)
-      // For demo, we'll accept any password for existing users
-      if (password.length < 1) {
+      const hashedPassword = hashPassword(password);
+
+      const dbUser = await userService.getUserByEmail(email);
+      if (!dbUser || !dbUser.password) {
+        console.log("No password found for user:", email);
+        return null;
+      }
+
+      if (dbUser.password !== hashedPassword) {
+        console.log("Password mismatch for user:", email);
         return null;
       }
 
