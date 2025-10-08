@@ -3,17 +3,17 @@
 
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
-import type { Poll, User } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { useAuth } from '../../../hooks/use-auth';
+import type { Poll, User } from '../../../types';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../../../components/ui/card';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from '@/components/ui/sheet';
+} from '../../../components/ui/sheet';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,9 +23,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { PollForm } from '@/components/admin/poll-form';
-import { Progress } from "@/components/ui/progress";
+} from '../../../components/ui/alert-dialog';
+import { PollForm } from '../../../components/admin/poll-form';
+import { Progress } from "../../../components/ui/progress";
 import { PlusCircle, ShieldAlert, BarChart3, CheckCircle, XCircle, Trash2 } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 
