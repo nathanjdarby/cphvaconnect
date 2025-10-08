@@ -95,7 +95,8 @@ export default function AdminUsersPage() {
   const roleOrder: Record<UserRole, number> = {
     admin: 1,
     organiser: 2,
-    attendee: 3,
+    staff: 3,
+    attendee: 4,
   };
 
   const filteredAndSortedUsers = useMemo(() => {
@@ -163,6 +164,7 @@ export default function AdminUsersPage() {
                   <SelectItem value="all">All Roles</SelectItem>
                   <SelectItem value="admin">Admin</SelectItem>
                   <SelectItem value="organiser">Organiser</SelectItem>
+                  <SelectItem value="staff">Staff</SelectItem>
                   <SelectItem value="attendee">Attendee</SelectItem>
                 </SelectContent>
               </Select>
@@ -226,6 +228,7 @@ export default function AdminUsersPage() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="attendee">Attendee</SelectItem>
+                            <SelectItem value="staff">Staff</SelectItem>
                             <SelectItem value="organiser">Organiser</SelectItem>
                             <SelectItem value="admin">Admin</SelectItem>
                           </SelectContent>

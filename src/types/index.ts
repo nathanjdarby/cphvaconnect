@@ -1,10 +1,9 @@
-
 export interface User {
   id: string; // This will be the Firebase Auth UID and the Firestore document ID
   name: string;
   email: string;
   password?: string; // Password hash (only used for database authentication)
-  role: 'attendee' | 'admin' | 'organiser' | 'staff';
+  role: "attendee" | "admin" | "organiser" | "staff";
   nameIsPublic?: boolean;
   emailIsPublic?: boolean;
   bio?: string;

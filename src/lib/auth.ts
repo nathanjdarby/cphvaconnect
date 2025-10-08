@@ -30,7 +30,7 @@ export const authService = {
 
       // Verify password by hashing and comparing
       const hashedPassword = hashPassword(password);
-      
+
       // Get the stored password hash from database
       const dbUser = await userService.getUserByEmail(email);
       if (!dbUser || !dbUser.password) {
