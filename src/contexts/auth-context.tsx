@@ -240,7 +240,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           const token = localStorage.getItem("authToken");
           if (token) {
             const isValidToken = USE_REAL_DB
-              ? authClientService.isValidToken(token)
+              ? await authClientService.isValidToken(token)
               : mockApiService.isValidToken(token);
 
             if (isValidToken) {

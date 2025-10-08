@@ -10,25 +10,28 @@ const sessions = new Map<string, { userId: string; expiresAt: number }>();
 const SESSION_TIMEOUT = 24 * 60 * 60 * 1000;
 
 export const authClientService = {
-  // Validate token
-  isValidToken(token: string): boolean {
-    const session = sessions.get(token);
-    return session !== undefined && session.expiresAt > Date.now();
+  // Validate token by checking with server
+  async isValidToken(token: string): Promise<boolean> {
+    try {
+      const response = await fetch('/api/auth/current-user', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("Token validation error:", error);
+      return false;
+    }
   },
 
   // Get current user from token (client-side only)
   async getCurrentUser(token: string): Promise<User | null> {
     try {
-      const session = sessions.get(token);
-
-      if (!session || session.expiresAt < Date.now()) {
-        // Session expired or doesn't exist
-        sessions.delete(token);
-        return null;
-      }
-
-      // For client-side, we need to make an API call to get user data
-      // since we can't access the database directly
+      // Always check with server for current user data
+      // since client-side session Map is not persistent across page refreshes
       const response = await fetch('/api/auth/current-user', {
         method: 'GET',
         headers: {
