@@ -92,14 +92,14 @@ export const userService = {
     };
   },
 
-  async createUser(user: User): Promise<void> {
+  async createUser(user: User): Promise<User | null> {
     const db = getDatabase();
     const stmt = db.prepare(`
       INSERT INTO users (id, name, email, role, name_is_public, email_is_public, bio, avatar_url, avatar_storage_path)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    stmt.run(
+    const result = stmt.run(
       user.id,
       user.name,
       user.email,
@@ -110,9 +110,17 @@ export const userService = {
       user.avatarUrl,
       user.avatarStoragePath
     );
+    
+    // Check if the insert was successful
+    if (result.changes === 0) {
+      return null; // Failed to create user
+    }
+    
+    // Return the created user
+    return await this.getUserById(user.id);
   },
 
-  async updateUser(id: string, updates: Partial<User>): Promise<void> {
+  async updateUser(id: string, updates: Partial<User>): Promise<User | null> {
     const db = getDatabase();
     const fields = Object.keys(updates).map((key) => {
       if (key === "nameIsPublic") return "name_is_public";
@@ -133,7 +141,15 @@ export const userService = {
         .map((f) => `${f} = ?`)
         .join(", ")}, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
     );
-    stmt.run(...values, id);
+    const result = stmt.run(...values, id);
+    
+    // Check if the update affected any rows
+    if (result.changes === 0) {
+      return null; // User not found
+    }
+    
+    // Return the updated user
+    return await this.getUserById(id);
   },
 
   async getAllUsers(): Promise<User[]> {
@@ -155,10 +171,11 @@ export const userService = {
     }));
   },
 
-  async deleteUser(id: string): Promise<void> {
+  async deleteUser(id: string): Promise<boolean> {
     const db = getDatabase();
     const stmt = db.prepare("DELETE FROM users WHERE id = ?");
-    stmt.run(id);
+    const result = stmt.run(id);
+    return result.changes > 0; // Return true if a row was deleted
   },
 };
 

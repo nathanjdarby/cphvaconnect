@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { userService } from '../../../../lib/database';
+import { randomUUID } from 'crypto';
 
 export async function GET() {
   try {
@@ -22,7 +23,22 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const userData = await request.json();
-    const newUser = await userService.createUser(userData);
+    
+    // Generate a unique ID for the new user
+    const userId = randomUUID();
+    
+    // Create full user object with generated ID
+    const fullUserData = {
+      ...userData,
+      id: userId,
+      nameIsPublic: userData.nameIsPublic ?? true,
+      emailIsPublic: userData.emailIsPublic ?? false,
+      bio: userData.bio ?? "",
+      avatarUrl: userData.avatarUrl ?? null,
+      avatarStoragePath: userData.avatarStoragePath ?? null,
+    };
+    
+    const newUser = await userService.createUser(fullUserData);
     
     if (newUser) {
       // Remove password from response for security
