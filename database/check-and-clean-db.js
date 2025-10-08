@@ -18,11 +18,24 @@ speakers.forEach((speaker, i) => {
   console.log(`  ${i + 1}. ${speaker.name} - ${speaker.title} (ID: ${speaker.id})`);
 });
 
-// Check schedule events
-const events = db.prepare('SELECT id, title, start_time FROM schedule_events').all();
+// Check schedule events (handle different schema versions)
+let events = [];
+try {
+  // Try with start_time column first
+  events = db.prepare('SELECT id, title, start_time FROM schedule_events').all();
+} catch (e) {
+  // Fall back to different column names
+  try {
+    events = db.prepare('SELECT id, title, startTime FROM schedule_events').all();
+  } catch (e2) {
+    // Fall back to just id and title
+    events = db.prepare('SELECT id, title FROM schedule_events').all();
+  }
+}
 console.log(`\n📅 Schedule Events (${events.length}):`);
 events.forEach((event, i) => {
-  console.log(`  ${i + 1}. ${event.title} - ${event.start_time} (ID: ${event.id})`);
+  const time = event.start_time || event.startTime || 'No time set';
+  console.log(`  ${i + 1}. ${event.title} - ${time} (ID: ${event.id})`);
 });
 
 // Check users
