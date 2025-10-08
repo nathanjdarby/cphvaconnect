@@ -3,14 +3,14 @@
 
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
-import type { Ticket, User } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '@/components/ui/table';
+import { useAuth } from '../../../hooks/use-auth';
+import type { Ticket, User } from '../../../types';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../../components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from '../../../components/ui/table';
 import { ShieldAlert, ListOrdered, CheckCircle2, XCircle, Users, TicketCheck } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '../../../hooks/use-toast';
 
 export default function AdminAttendancePage() {
   const { user, loading, allTickets, toggleTicketCheckIn } = useAuth();
