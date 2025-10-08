@@ -1,9 +1,9 @@
 "use client";
 
-import { useAuth } from "../hooks/use-auth";
+import { useAuth } from "../../hooks/use-auth";
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 
 export default function DebugAuthPage() {
   const { user, loading } = useAuth();
