@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../../../hooks/use-auth";
-import type { ScheduleEvent, Speaker, LocationType, User } from "../../../types";
+import type {
+  ScheduleEvent,
+  Speaker,
+  LocationType,
+  User,
+} from "../../../types";
 import { Button } from "../../../components/ui/button";
 import {
   Card,

@@ -155,21 +155,25 @@ docker ps
 The database comes pre-populated with these user accounts:
 
 ### 👤 Admin Account
+
 - **Email:** `admin@cphva.org`
 - **Password:** `admin123`
 - **Permissions:** Full access to all features
 
 ### 👤 Organiser Account
+
 - **Email:** `organiser@cphva.org`
 - **Password:** `organiser123`
 - **Permissions:** Manage events, speakers, exhibitors, polls
 
 ### 👤 Staff Account
+
 - **Email:** `staff@cphva.org`
 - **Password:** `staff123`
 - **Permissions:** Check-in attendees, view reports
 
 ### 👤 Attendee Account
+
 - **Email:** `john@example.com`
 - **Password:** `attendee123`
 - **Permissions:** View schedule, vote in polls, view ticket
@@ -185,25 +189,29 @@ The database comes pre-populated with these user accounts:
 1. **Visit your application:** `http://10.2.250.64`
 
 2. **Test Login:**
+
    - Go to `http://10.2.250.64/login`
    - Login with admin credentials
    - You should be redirected to the admin dashboard
 
 3. **Check Sample Data:**
+
    - **Schedule:** `http://10.2.250.64/schedule` - Should show 4 events
    - **Speakers:** `http://10.2.250.64/speakers` - Should show 3 speakers
    - **Exhibitors:** `http://10.2.250.64/exhibitors` - Should show 3 exhibitors
 
 4. **Test Admin Features:**
+
    - Navigate to Admin → Users (should show 4 users)
    - Navigate to Admin → Sales (should show 1 ticket)
    - Navigate to Admin → Polls (should show 2 polls)
 
 5. **Test Data Persistence:**
+
    ```bash
    # Restart the container
    docker restart cphvaconnect-app-1
-   
+
    # Wait 30 seconds, then check if data persists
    # Login again - your data should still be there!
    ```
@@ -254,14 +262,16 @@ If not set correctly, update your Portainer stack configuration.
 
 ### Issue: "Login not working"
 
-**Solution:** 
+**Solution:**
 
 1. Check if database exists:
+
    ```bash
    docker exec -it cphvaconnect-app-1 ls -la /app/data/
    ```
 
 2. Verify database has data:
+
    ```bash
    docker exec -it cphvaconnect-app-1 sh
    cd /app
@@ -354,40 +364,47 @@ docker restart cphvaconnect-app-1
 ## 🎯 What's Included in Sample Data
 
 ### Users (4)
+
 - 1 Admin
 - 1 Organiser
 - 1 Staff member
 - 1 Attendee (with 1 ticket)
 
 ### Speakers (3)
+
 - Dr. Sarah Johnson (Featured)
 - Prof. Michael Chen (Featured)
 - Emma Williams
 
 ### Locations (4)
+
 - Main Auditorium (500 capacity)
 - Conference Room A (100 capacity)
 - Conference Room B (50 capacity)
 - Exhibition Hall (300 capacity)
 
 ### Schedule Events (4)
+
 - Opening Keynote
 - Digital Health Workshop
 - Lunch Break
 - Public Health Panel
 
 ### Exhibitors (3)
+
 - MedTech Solutions
 - Healthcare Analytics Co
 - Wellness Products Ltd
 
 ### Ticket Types (4)
+
 - Early Bird (£99.99)
 - Standard (£149.99)
 - VIP (£299.99)
 - Student (£49.99)
 
 ### Polls (2)
+
 - "What topic interests you most?" (4 options)
 - "How did you hear about this conference?" (4 options)
 
@@ -473,17 +490,20 @@ Once setup is complete, you'll have:
 ## 📝 Next Steps
 
 1. **Customize the data:**
+
    - Update speaker information
    - Modify event schedule
    - Add your exhibitors
    - Adjust ticket prices
 
 2. **Configure settings:**
+
    - Go to Admin → Settings
    - Enable/disable ticket sales
    - Configure registration options
 
 3. **Add real users:**
+
    - Create accounts for your team
    - Assign appropriate roles
    - Delete sample accounts if not needed

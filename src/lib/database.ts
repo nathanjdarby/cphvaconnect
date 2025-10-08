@@ -7,7 +7,9 @@ let db: Database.Database | null = null;
 
 export function getDatabase(): Database.Database {
   if (!db) {
-    const dbPath = path.join(process.cwd(), 'database', 'cphva_connect.db');
+    // Use environment variable if set, otherwise use default path
+    const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), 'database', 'cphva_connect.db');
+    console.log('Opening database at:', dbPath);
     db = new Database(dbPath);
     
     // Enable foreign keys
@@ -44,6 +46,28 @@ export const userService = {
       id: row.id,
       name: row.name,
       email: row.email,
+      password: row.password, // Include password for authentication
+      role: row.role,
+      nameIsPublic: intToBool(row.name_is_public),
+      emailIsPublic: intToBool(row.email_is_public),
+      bio: row.bio,
+      avatarUrl: row.avatar_url,
+      avatarStoragePath: row.avatar_storage_path,
+    };
+  },
+
+  async getUserByEmail(email: string): Promise<User | null> {
+    const db = getDatabase();
+    const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
+    const row = stmt.get(email) as any;
+    
+    if (!row) return null;
+    
+    return {
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      password: row.password, // Include password for authentication
       role: row.role,
       nameIsPublic: intToBool(row.name_is_public),
       emailIsPublic: intToBool(row.email_is_public),
@@ -102,6 +126,7 @@ export const userService = {
       id: row.id,
       name: row.name,
       email: row.email,
+      password: row.password, // Include password for authentication
       role: row.role,
       nameIsPublic: intToBool(row.name_is_public),
       emailIsPublic: intToBool(row.email_is_public),

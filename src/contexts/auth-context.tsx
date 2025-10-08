@@ -22,11 +22,16 @@ import React, {
 } from "react";
 import { useToast } from "../hooks/use-toast";
 import { mockApiService } from "../lib/mock-api";
+import { authService } from "../lib/auth";
+
+// Check if we should use real database
+const USE_REAL_DB = process.env.NEXT_PUBLIC_USE_REAL_DATABASE === 'true' || 
+                     typeof window === 'undefined' && process.env.USE_REAL_DATABASE === 'true';
 
 const mapUserWithDefaults = (
   userData: Partial<User> & { id: string }
 ): User => {
-  const validRoles: User["role"][] = ["admin", "attendee", "organiser"];
+  const validRoles: User["role"][] = ["admin", "attendee", "organiser", "staff"];
   let role: User["role"] = "attendee";
 
   if (userData.role && validRoles.includes(userData.role)) {
@@ -340,7 +345,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ): Promise<boolean> => {
     try {
       setLoading(true);
-      const result = await mockApiService.login(email, password);
+      console.log('Attempting login with:', email, 'USE_REAL_DB:', USE_REAL_DB);
+      
+      // Use real database authentication if enabled
+      const result = USE_REAL_DB 
+        ? await authService.login(email, password)
+        : await mockApiService.login(email, password);
 
       if (result) {
         const mappedUser = mapUserWithDefaults(result.user);

@@ -63,6 +63,7 @@ docker ps
 Go to: `http://10.2.250.64/login`
 
 **Admin Login:**
+
 - Email: `admin@cphva.org`
 - Password: `admin123`
 
@@ -72,12 +73,12 @@ Go to: `http://10.2.250.64/login`
 
 ## 🔐 All Login Credentials
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@cphva.org | admin123 |
+| Role      | Email               | Password     |
+| --------- | ------------------- | ------------ |
+| Admin     | admin@cphva.org     | admin123     |
 | Organiser | organiser@cphva.org | organiser123 |
-| Staff | staff@cphva.org | staff123 |
-| Attendee | john@example.com | attendee123 |
+| Staff     | staff@cphva.org     | staff123     |
+| Attendee  | john@example.com    | attendee123  |
 
 ⚠️ **Change these passwords immediately!**
 
@@ -99,26 +100,31 @@ Go to: `http://10.2.250.64/login`
 ## 🔧 Common Commands
 
 ### Check if containers are running
+
 ```bash
 docker ps
 ```
 
 ### View app logs
+
 ```bash
 docker logs cphvaconnect-app-1 -f
 ```
 
 ### Restart the app
+
 ```bash
 docker restart cphvaconnect-app-1
 ```
 
 ### Backup database
+
 ```bash
 docker cp cphvaconnect-app-1:/app/data/cphva.db ~/cphva-backup-$(date +%Y%m%d).db
 ```
 
 ### Reset database (start fresh)
+
 ```bash
 docker exec -it cphvaconnect-app-1 sh -c "rm -f /app/data/cphva.db && cd /app/database && node init-db.js"
 docker restart cphvaconnect-app-1
@@ -141,6 +147,7 @@ docker restart cphvaconnect-app-1
 ## ❓ Troubleshooting
 
 ### Problem: Can't login
+
 ```bash
 # Check if database exists
 docker exec cphvaconnect-app-1 ls -la /app/data/cphva.db
@@ -151,6 +158,7 @@ docker restart cphvaconnect-app-1
 ```
 
 ### Problem: Still seeing mock data
+
 ```bash
 # Check environment variables
 docker exec cphvaconnect-app-1 env | grep DATABASE
@@ -161,6 +169,7 @@ docker exec cphvaconnect-app-1 env | grep DATABASE
 ```
 
 ### Problem: Container won't start
+
 ```bash
 # Check logs
 docker logs cphvaconnect-app-1 --tail 100
@@ -173,6 +182,7 @@ docker logs cphvaconnect-app-1 --tail 100
 ## 📚 Full Documentation
 
 For detailed information, see:
+
 - **DATABASE_SETUP_GUIDE.md** - Complete setup instructions
 - **DEPLOYMENT_GUIDE.md** - Original deployment guide
 - **README.md** - Project overview
@@ -182,6 +192,7 @@ For detailed information, see:
 ## 🎉 You're All Set!
 
 Your CPHVA Connect application is now running with:
+
 - ✅ Persistent database
 - ✅ Sample data
 - ✅ Multiple user accounts
